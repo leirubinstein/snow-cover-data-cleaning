@@ -1,0 +1,161 @@
+---
+title: "EDS 213 - Assignment #2"
+author: "Leilanie Rubinstein"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+# Assignment 2 - Data Cleaning
+
+```{r}
+# Load libraries
+library(tidyverse)
+```
+
+```{r}
+# Import data
+snowsurvey_csv <- read_csv(here::here("data", "raw", "ASDN_Snow_survey.csv"))
+```
+
+## 1. Clean the `Water_cover` column to transform it into the correct data type and respect expectations for a percentage.
+
+```{r}
+# Find all the unique values in the Water_cover column
+snowsurvey_csv %>%
+  count(Water_cover) %>%
+  print(n=100)
+```
+
+There are several values that appear to be non-numeric: `-`, `.`, `n/a`, and `unk`. These will be transformed to NA values. Values above 100 will also be transformed to NA values.
+
+```{r}
+# Clean water_cover column and transform to numeric
+snowsurvey_clean <- snowsurvey_csv %>%
+  mutate(Water_cover = case_when(
+    Water_cover %in% c("-", ".", "unk", "n/a") ~ NA,
+    TRUE ~ Water_cover
+    )) %>%
+  mutate(Water_cover = as.numeric(Water_cover)) %>%
+  mutate(Water_cover = ifelse(Water_cover > 100, NA, Water_cover))
+```
+
+```{r}
+# Check data type
+class(snowsurvey_clean$Water_cover)
+
+# Check that values were transformed correctly
+snowsurvey_clean %>%
+  count(Water_cover) %>%
+  print(n=100)
+```
+
+## 2. Clean the `Land_cover` column to transform it into the correct data type and respect expectations for a percentage
+
+```{r}
+# Find all the unique values in the Land_cover column
+snowsurvey_csv %>%
+  count(Land_cover) %>%
+  print(n=101)
+```
+
+There are several values that appear to be non-numeric: `-`, `.`, `n/a`, and `unk`. These will be transformed to NA values. Values above 100 will also be transformed to NA values.
+
+```{r}
+# Clean Land_cover column and transform to numeric
+snowsurvey_clean <- snowsurvey_clean %>%
+  mutate(Land_cover = case_when(
+    Land_cover %in% c("-", ".", "unk", "n/a") ~ NA,
+    TRUE ~ Land_cover
+    )) %>%
+  mutate(Land_cover = as.numeric(Land_cover)) %>%
+  mutate(Land_cover = ifelse(Land_cover > 100, NA, Land_cover))
+```
+
+There are two values below 0. For Land_cover = -298, the snow cover is 45%, and the total cover is 100%. I am replacing -298 with 55 to add up to 100% total cover. For Land_cover = -100, the total cover is 100, but snow cover is 200, so I will replace -100 with NA. 
+
+```{r}
+# Clean negative values in Land_cover column
+snowsurvey_clean <- snowsurvey_clean %>%
+  mutate(Land_cover = ifelse(Land_cover == -298, 55, Land_cover)) %>%
+  mutate(Land_cover = ifelse(Land_cover == -100, NA, Land_cover)) 
+```
+
+```{r}
+# Check data type
+class(snowsurvey_clean$Land_cover)
+
+# Check that values were transformed correctly
+snowsurvey_clean %>%
+  count(Land_cover) %>%
+  print(n=101)
+```
+
+## 3. Use the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the `Total_cover` column as needed
+
+```{r}
+# Clean Snow_cover column
+snowsurvey_clean <- snowsurvey_clean %>%
+  mutate(Snow_cover = case_when(
+    Snow_cover %in% c("-", ".", "unk", "n/a") ~ NA,
+    Snow_cover == "<1" ~ "0",
+    TRUE ~ Snow_cover
+    )) %>%
+  mutate(Snow_cover = as.numeric(Snow_cover)) %>%
+  mutate(Snow_cover = ifelse(Snow_cover > 100, NA, Snow_cover))
+```
+
+```{r}
+# Check that values were transformed correctly
+snowsurvey_clean %>%
+  count(Snow_cover) %>%
+  print(n = 55)
+```
+
+I am replacing all non-numeric values in the `Total_cover` column with NA, and values above 100 with NA before transforming the column to a numeric column. 
+
+```{r}
+# Find all the unique values in the Total_cover column
+snowsurvey_csv %>%
+  count(Total_cover) %>%
+  print(n = 39)
+```
+
+```{r}
+# Clean values in Total_cover column
+snowsurvey_clean <- snowsurvey_clean %>%
+  mutate(Total_cover = case_when(
+    Total_cover %in% 
+      c("-", 
+        ".", 
+        "<row r=\\64\\ spans=\\1:11\\ x14ac:dyDescent=\\0.2\\>", 
+        "n/a") ~ NA,
+    TRUE ~ Total_cover
+    )) %>%
+  mutate(Total_cover = as.numeric(Total_cover)) %>%
+  mutate(Total_cover = ifelse(Total_cover > 100, NA, Total_cover))
+```
+
+For missing values in the `Total_cover` column, I am adding the three cover columns together. If the sum of these columns > 100, I am converting values in all cover columns to NA, since we do not know which of the cover values were inputted incorrectly.
+
+```{r}
+# Recompute Total_cover column as sum of cover columns
+recomputed <- snowsurvey_clean %>% 
+  select(Snow_cover, Land_cover, Water_cover) %>%
+  mutate(Total_cover = rowSums(.)) %>%
+  mutate(Total_cover = ifelse(Total_cover > 100, NA, Total_cover)) %>%
+  mutate(Snow_cover = ifelse(Total_cover > 100, NA, Snow_cover)) %>%
+  mutate(Land_cover = ifelse(Total_cover > 100, NA, Land_cover)) %>%
+  mutate(Water_cover = ifelse(Total_cover > 100, NA, Water_cover))
+
+# Replace columns in original dataframe with recomputed columns
+snowsurvey_clean$Snow_cover <- recomputed$Snow_cover
+snowsurvey_clean$Land_cover <- recomputed$Land_cover
+snowsurvey_clean$Water_cover <- recomputed$Water_cover
+snowsurvey_clean$Total_cover <- recomputed$Total_cover
+```
+
+```{r}
+# Write to file
+write_csv(snowsurvey_clean, here::here("data/processed/all_cover_fixed_LEILANIE_RUBINSTEIN.csv"))
+```
