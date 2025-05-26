@@ -1,6 +1,25 @@
-## Data & File Overview
+# Snow Cover Data Cleaning
 
 *Data in this repository houses a cleaned version of the Arctic Shorebird Demographics Network's snow survey data. This repository was produced for [EDS 213: Databases & Data Management](https://ucsb-library-research-data-services.github.io/bren-eds213/) as a part of the Bren School's Master of Environmental Data Science program.*
+
+## Background
+
+ARCTIC SHOREBIRD DEMOGRAPHICS NETWORK [https://doi.org/10.18739/A2222R68W](https://doi.org/10.18739/A2222R68W)
+
+Data set hosted by the [NSF Arctic Data Center](https://arcticdata.io) data repository 
+
+Field data on shorebird ecology and environmental conditions were collected from 1993-2014 at 16 field sites in Alaska, Canada, and Russia.
+
+![Shorebird, copyright NYT](https://static01.nyt.com/images/2017/09/10/nyregion/10NATURE1/10NATURE1-superJumbo.jpg?quality=75&auto=webp)
+
+Data were not collected every year at all sites. Studies of the population ecology of these birds included nest-monitoring to determine the timing of reproduction and reproductive success; live capture of birds to collect blood samples, feathers, and fecal samples for investigations of population structure and pathogens; banding of birds to determine annual survival rates; resighting of color-banded birds to determine space use and site fidelity; and use of light-sensitive geolocators to investigate migratory movements. 
+
+Data on climatic conditions, prey abundance, and predators were also collected. Environmental data included weather stations that recorded daily climatic conditions, surveys of seasonal snowmelt, weekly sampling of terrestrial and aquatic invertebrates that are prey of shorebirds, live trapping of small mammals (alternate prey for shorebird predators), and daily counts of potential predators (jaegers, falcons, foxes). Detailed field methods for each year are available in the `ASDN_protocol_201X.pdf` files. All research was conducted under permits from relevant federal, state, and university authorities.
+
+See `01_ASDN_Readme.txt` provided in the repository for full metadata information about this data set.
+
+
+## Data & File Overview
 
 ### File list
 
@@ -10,7 +29,20 @@ The following datasets were used for the purposes of this analysis:
 
 ### File Relationships
 
-**insert ER diagram?**
+```
+📦 
+├─ .gitignore
+├─ LICENSE
+├─ README.md
+├─ data
+│  ├─ processed
+│  │  ├─ all_cover_fixed_LEILANIE_RUBINSTEIN.csv
+│  │  └─ snow_cover.csv
+│  └─ raw
+│     └─ ASDN_Snow_survey.csv
+├─ eds213_data_cleaning_assign_LEILANIE_RUBINSTEIN.qmd
+└─ snow-cover-data-cleaning.Rproj
+```
 
 ### Additional Related Data
 
