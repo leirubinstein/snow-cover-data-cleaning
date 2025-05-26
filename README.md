@@ -155,7 +155,7 @@ Not applicable.
 
 ### Data was derived from:
 
-Data was derived from the bren-meds213-data-cleaning [repository](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning) and the [Arctic Shorebird Demographics Network](https://doi.org/10.18739/A2222R68W).
+Data was derived from the bren-meds213-data-cleaning [repository](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning) and the [Arctic Shorebird Demographics Network](https://doi.org/10.18739/A2222R68W). Please see below for original dataset citation.
 
 ### Recommended citation
 
