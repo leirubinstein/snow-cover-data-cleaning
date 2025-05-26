@@ -4,9 +4,7 @@
 
 ## Background
 
-ARCTIC SHOREBIRD DEMOGRAPHICS NETWORK [https://doi.org/10.18739/A2222R68W](https://doi.org/10.18739/A2222R68W)
-
-Data set hosted by the [NSF Arctic Data Center](https://arcticdata.io) data repository 
+[**Arctic Shorebird Demographics Network**](https://doi.org/10.18739/A2222R68W), hosted by the [NSF Arctic Data Center](https://arcticdata.io) data repository.
 
 Field data on shorebird ecology and environmental conditions were collected from 1993-2014 at 16 field sites in Alaska, Canada, and Russia.
 
@@ -17,7 +15,6 @@ Data were not collected every year at all sites. Studies of the population ecolo
 Data on climatic conditions, prey abundance, and predators were also collected. Environmental data included weather stations that recorded daily climatic conditions, surveys of seasonal snowmelt, weekly sampling of terrestrial and aquatic invertebrates that are prey of shorebirds, live trapping of small mammals (alternate prey for shorebird predators), and daily counts of potential predators (jaegers, falcons, foxes). Detailed field methods for each year are available in the `ASDN_protocol_201X.pdf` files. All research was conducted under permits from relevant federal, state, and university authorities.
 
 See `01_ASDN_Readme.txt` provided in the repository for full metadata information about this data set.
-
 
 ## Data & File Overview
 
@@ -73,7 +70,7 @@ the NSF Arctic Data Center (https://arcticdata.io). Each file is a .csv file wit
 
 ### Other versions
 
-`snow_survey_fixed.csv` is a modified and cleaned version of `ASDN_Snow_Survey.csv`. 
+`all_cover_fixed_LEILANIE_RUBINSTEIN.csv` is a modified and cleaned version of `ASDN_Snow_Survey.csv`. 
 
 ## Data-specific Information
 
@@ -81,7 +78,7 @@ Data specific information for `all_cover_fixed_LEILANIE_RUBINSTEIN.csv`
 
 ### Number of variables
 
-There are 11 variable in the processed snow cover data.
+There are 11 variables in the processed snow cover data.
 
 ### Number of cases/rows
 
@@ -105,7 +102,7 @@ There are 42830 observations in the processed snow cover data.
 
 ### Missing Data Codes
 
-Missing data was coded as `NA` for all variables. 
+Missing data was coded as `NA` for all variables in the cleaned snow survey data.
 
 ### Specialized formats or other abbreviations
 
@@ -154,14 +151,16 @@ Data is publicly accessible at:
 
 ### Links/relationships to ancillary data sets
 
+Not applicable.
+
 ### Data was derived from:
+
+Data was derived from the bren-meds213-data-cleaning [repository](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning) and the [Arctic Shorebird Demographics Network](https://doi.org/10.18739/A2222R68W).
 
 ### Recommended citation
 
-Original data:
+Please cite the original dataset housed by the Arctic Data Center:
 
 Richard B. Lanctot, Stephen Brown, & Brett K. Sandercock. (2016). *Arctic Shorebird Demographics Network*. Arctic Data Center. [doi:10.18739/A2222R68W](https://doi.org/10.18739/A2222R68W).
-
-Processed snow survey data:
 
 
