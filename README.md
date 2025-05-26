@@ -20,9 +20,16 @@ See `01_ASDN_Readme.txt` provided in the repository for full metadata informatio
 
 ### File list
 
-The following datasets were used for the purposes of this analysis:
-- `ASDN_Snow_survey.csv`
-- `all_cover_fixed_LEILANIE_RUBINSTEIN.csv`
+The following datasets and information were used for the purposes of this analysis:
+
+- `data/raw/ASDN_Snow_survey.csv` - Original snow cover survey dataset, containing periodic records of snow cover remaining at the site, as well as percent cover or water, exposed land, and total sum of cover. 
+- `data/raw/ASDN_Daily_species.csv` - Original dataset containing a record of the species (birds and mammals) encountered during field work each day at each site.
+- `data/raw/01_ASDN_Readme.txt` - Original metadata for ASDN data.
+
+The following files and datasets were produced as a part of this repository:
+
+- `data/processed/eds213_data_cleaning_assign_LEILANIE_RUBINSTEIN.qmd` - Quarto document to clean snow cover data, where percentage columns were transformed to numerical data types and follow correct expectations for percentages. 
+- `all_cover_fixed_LEILANIE_RUBINSTEIN.csv` - Cleaned snow cover data.
 
 ### File Relationships
 
@@ -34,8 +41,9 @@ The following datasets were used for the purposes of this analysis:
 ├─ data
 │  ├─ processed
 │  │  ├─ all_cover_fixed_LEILANIE_RUBINSTEIN.csv
-│  │  └─ snow_cover.csv
 │  └─ raw
+│     ├─ 01_ASDN_Readme.txt
+│     └─ ASDN_Daily_species.csv
 │     └─ ASDN_Snow_survey.csv
 ├─ eds213_data_cleaning_assign_LEILANIE_RUBINSTEIN.qmd
 └─ snow-cover-data-cleaning.Rproj
@@ -112,7 +120,9 @@ No specialized formats or abbreviations were used in the processed snow cover da
 
 ### License
 
-This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+Original data for this repository was licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+
+Cleaned data for this repository is licensed under the Created Commons 1.0 Universal License. Click [here](https://github.com/leirubinstein/snow-cover-data-cleaning/blob/main/LICENSE) to view a copy.
 
 ### Links to publications that cite or use the data
 
