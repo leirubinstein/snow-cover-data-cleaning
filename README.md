@@ -1,9 +1,10 @@
-## DATA & FILE OVERVIEW
+## Data & File Overview
+
+*Data in this repository houses a cleaned version of the Arctic Shorebird Demographics Network's snow survey data. This repository was produced for [EDS 213: Databases & Data Management](https://ucsb-library-research-data-services.github.io/bren-eds213/) as a part of the Bren School's Master of Environmental Data Science program.*
 
 ### File list
 
 The following datasets were used for the purposes of this analysis:
-- `ASDN_Daily_species.csv`
 - `ASDN_Snow_survey.csv`
 - `all_cover_fixed_LEILANIE_RUBINSTEIN.csv`
 
@@ -38,7 +39,7 @@ the NSF Arctic Data Center (https://arcticdata.io). Each file is a .csv file wit
 	- Weather_precip_manual
 	- Weather_snow_manual
 
-4. Are there multiple versions of the dataset?
+### Other versions
 
 `snow_survey_fixed.csv` is a modified and cleaned version of `ASDN_Snow_Survey.csv`. 
 
@@ -78,7 +79,7 @@ Missing data was coded as `NA` for all variables.
 
 No specialized formats or abbreviations were used in the processed snow cover data.
 
-## SHARING/ACCESS INFORMATION
+## Sharing/Access Information
 
 ### License
 
